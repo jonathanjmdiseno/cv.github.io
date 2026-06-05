@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonathan M. Mendoza | Portfólio & CV</title>
+    <style>
+        /* Princípios do Material Design & Paleta Dark */
+        :root {
+            --bg-principal: #0f172a;
+            --bg-card: #1e293b;
+            --text-principal: #f8fafc;
+            --text-secundario: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8, #0284c7);
+            --accent-color: #38bdf8;
+            --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --sombra-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+            --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--text-principal);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container Global */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Sticky */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secundario);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transicao);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section com Gradiente */
+        header {
+            padding: 80px 0 60px 0;
+            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.15), transparent 40%);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.05);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+        }
+
+        /* Grid de Contatos (Cards) */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: var(--sombra-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+            color: var(--text-secundario);
+            transition: var(--transicao);
+        }
+
+        .contact-card strong {
+            color: var(--text-principal);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .contact-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 28px;
+            background: var(--accent-gradient);
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+            transition: var(--transicao);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 35px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .profile-box {
+            background-color: var(--bg-card);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: var(--sombra-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: justify;
+        }
+
+        /* Timeline de Experiência */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .timeline-item {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--sombra-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transicao);
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-hover);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .time-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-principal);
+        }
+
+        .job-date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .company-name {
+            font-size: 1rem;
+            color: #0f766e;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .job-list {
+            padding-left: 20px;
+            color: var(--text-secundario);
+        }
+
+        .job-list li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Layout de Duas Colunas (Educação & Competências) */
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .edu-card {
+            background-color: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .edu-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .edu-meta {
+            font-size: 0.9rem;
+            color: var(--text-secundario);
+            margin-bottom: 5px;
+        }
+
+        /* Badges de Habilidades e Idiomas */
+        .skills-container {
+            margin-bottom: 25px;
+        }
+
+        .skills-container h4 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--text-principal);
+            font-weight: 600;
+        }
+
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background-color: #334155;
+            color: var(--text-principal);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .badge.language {
+            background-color: rgba(2, 132, 199, 0.1);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secundario);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.05);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .time-header { flex-direction: column; align-items: flex-start; }
+            .job-date { margin-top: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">JONATHAN M. MENDOZA</div>
+            <ul class="nav-links">
+                <li><a href="#perfil">Perfil</a></li>
+                <li><a href="#experiencia">Experiência</a></li>
+                <li><a href="#competencias">Competências</a></li>
+                <li><a href="#certificacoes">Certificações</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <header>
+        <div class="container hero-grid">
+            <div>
+                <!-- -->
+                <h1>JONATHAN M. MENDOZA</h1>
+                <!--[cite: 1] -->
+                <div class="tagline">Designer Gráfico & Editor de Vídeo / Produtor Multimídia</div>
+                
+                <!--[cite: 1] -->
+                <a href="https://www.behance.net" target="_blank" class="cta-button">Ver Meu Portfólio / Showreel</a>
+
+                <div class="contact-grid">
+                    <!--[cite: 1] -->
+                    <div class="contact-card">
+                        <strong>Telefone</strong>
+                        <a href="tel:+5532988028321">+55 (32) 988028321</a>
+                    </div>
+                    <!--[cite: 1] -->
+                    <div class="contact-card">
+                        <strong>E-mail</strong>
+                        <a href="mailto:Jonathanjm.diseno@gmail.com">Jonathanjm.diseno@gmail.com</a>
+                    </div>
+                    <!--[cite: 1] -->
+                    <div class="contact-card">
+                        <strong>Localização</strong>
+                        Juiz de Fora, MG - Brasil
+                    </div>
+                    <!--[cite: 1] -->
+                    <div class="contact-card">
+                        <strong>Status</strong>
+                        Residência e Trabalho Válidos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- PERFIL PROFISSIONAL -->
+        <!--[cite: 1] -->
+        <section id="perfil">
+            <h2>Perfil Profissional</h2>
+            <div class="profile-box">
+                Designer Gráfico e Editor de Vídeo com mais de 7 anos de experiência internacional, especializado em <em>motion graphics</em>, pós-produção audiovisual e criação de conteúdo estratégico para plataformas digitais e redes sociais. Com um perfil híbrido que combina comunicação visual de alto impacto com uma sólida base pedagógica, meu foco está em potencializar a identidade visual de marcas, otimizar a experiência de aprendizagem digital e elevar os níveis de conversão e engajamento em campanhas multimídia. Disponibilidade imediata, com total flexibilidade para fluxos de trabalho híbridos ou remotos.
+            </div>
+        </section>
+
+        <!-- EXPERIÊNCIA PROFISSIONAL -->
+        <!--[cite: 1] -->
+        <section id="experiencia">
+            <h2>Experiência Profissional</h2>
+            <div class="timeline">
+                
+                <!-- Job 1 -->
+                <div class="timeline-item">
+                    <div class="time-header">
+                        <div class="job-title">Editor de Vídeo e Produtor Multimídia</div>
+                        <div class="job-date">2023 – Atualmente</div>
+                    </div>
+                    <div class="company-name">Faculdade Ensine \ IESPE – Juiz de Fora, Brasil</div>
+                    <ul class="job-list">
+                        <li>Lidero a edição e pós-produção de conteúdos audiovisuais para cursos institucionais, garantindo os mais altos padrões de qualidade técnica, estética e pedagógica.</li>
+                        <li>Conceituo e desenvolvo material publicitário audiovisual otimizado para campanhas digitais e redes sociais, melhorando a captação e o impacto visual da instituição.</li>
+                        <li>Especializado na divulgação e marketing de programas da área da saúde, desenvolvendo vídeos promocionais de alta conversão para fins comerciais e formativos.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="timeline-item">
+                    <div class="time-header">
+                        <div class="job-title">Designer Gráfico & Editor de Vídeo (Freelancer)</div>
+                        <div class="job-date">2020 – 2022</div>
+                    </div>
+                    <div class="company-name">Atuação Internacional Remota – Canadá, Quebec, EUA, França</div>
+                    <ul class="job-list">
+                        <li>Gestão de ponta a ponta de projetos visuais e audiovisuais para uma carteira de clientes internacionais, abrangendo desde a fase de <em>briefing</em> técnico até a entrega do produto final.</li>
+                        <li>Desenvolvimento de identidades visuais corporativas, peças de <em>motion graphics</em> e pacotes de vídeo adaptados a mercados competitivos e fluxos de trabalho multilíngues.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="timeline-item">
+                    <div class="time-header">
+                        <div class="job-title">Designer Gráfico & Motion Graphics</div>
+                        <div class="job-date">2019 – 2020</div>
+                    </div>
+                    <div class="company-name">Creative Park – Paraguai</div>
+                    <ul class="job-list">
+                        <li>Criação de ativos visuais dinâmicos e animações complexas (<em>motion graphics</em>) para campaigns publicitárias em redes sociais, aumentando a retenção de público das marcas clientes.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="timeline-item">
+                    <div class="time-header">
+                        <div class="job-title">Designer Gráfico</div>
+                        <div class="job-date">2019</div>
+                    </div>
+                    <div class="company-name">Laser Plast Indústria Publicitária – Paraguai</div>
+                    <ul class="job-list">
+                        <li>Design de material publicitário integral, tanto para formatos impressos tradicionais quanto para ambientes web e digitais.</li>
+                        <li>Criação de diretrizes e modelos de conteúdo visual para a gestão de redes sociais institucionais.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="timeline-item">
+                    <div class="time-header">
+                        <div class="job-title">Editor de Vídeo & Designer Gráfico</div>
+                        <div class="job-date">2017 – 2018</div>
+                    </div>
+                    <div class="company-name">Gálac Software – Caracas, Venezuela</div>
+                    <ul class="job-list">
+                        <li>Produção, edição e pós-produção de peças de vídeo corporativas, tutoriais de produtos e materiais de marketing para canais internos e externos da empresa.</li>
+                        <li>Design da linha gráfica de suporte multimídia para o posicionamento e a identidade visual da marca.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCAÇÃO E COMPETÊNCIAS -->
+        <!--[cite: 1] -->
+        <section id="competencias" class="grid-two-col">
+            
+            <!-- Coluna 1: Educação & Idiomas -->
+            <div>
+                <h2>Educação</h2>
+                <div class="edu-card">
+                    <h4>Licenciatura em Educação</h4>
+                    <div class="edu-meta">Especialidade em Francês</div>
+                    <div class="edu-meta" style="color: var(--accent-color);">Univ. Pedagógica Experimental Libertador | 2014</div>
+                </div>
+                <div class="edu-card">
+                    <h4>Especialização em Produção Audiovisual</h4>
+                    <div class="edu-meta">TV Caricuao (Venezuela) | 2017</div>
+                </div>
+
+                <h2>Idiomas</h2>
+                <div class="badge-group" style="margin-top: 15px;">
+                    <div class="badge language">Espanhol: Nativo</div>
+                    <div class="badge language">Francês: Avançado / Fluente</div>
+                    <div class="badge language">Português: Avançado / Fluente</div>
+                    <div class="badge language">Inglês: Intermediário</div>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Habilidades -->
+            <div>
+                <h2>Habilidades & Ferramentas</h2>
+                <div style="background-color: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03);">
+                    <div class="skills-container">
+                        <h4>Softwares Criativos</h4>
+                        <div class="badge-group">
+                            <div class="badge">Adobe Premiere Pro</div>
+                            <div class="badge">After Effects</div>
+                            <div class="badge">Photoshop</div>
+                            <div class="badge">Illustrator</div>
+                            <div class="badge">DaVinci Resolve</div>
+                            <div class="badge">Affinity Designer</div>
+                            <div class="badge">Affinity Photo</div>
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <h4>Gestão & Estratégia</h4>
+                        <div class="badge-group">
+                            <div class="badge">Projetos Audiovisuais</div>
+                            <div class="badge">Identidade de Marca (Branding)</div>
+                            <div class="badge">Marketing de Conteúdo</div>
+                            <div class="badge">Comunicação & Oratória</div>
+                        </div>
+                    </div>
+                    <div class="skills-container">
+                        <h4>Diferencial Pedagógico</h4>
+                        <div class="badge-group">
+                            <div class="badge">Design Instrucional</div>
+                            <div class="badge">Didática Aplicada</div>
+                            <div class="badge">E-learning</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICAÇÕES -->
+        <!--[cite: 1] -->
+        <section id="certificacoes">
+            <h2>Desenvolvimento Profissional & Certificações</h2>
+            <div class="grid-two-col">
+                <div class="edu-card" style="margin-bottom: 0;">
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px; font-size: 1.15rem;">Técnicas & Audiovisuais</h3>
+                    <ul style="padding-left: 20px; color: var(--text-secundario);">
+                        <li style="margin-bottom: 8px;">Pós-Produção Audiovisual e Color Grading (Crehana INC.)</li>
+                        <li style="margin-bottom: 8px;">Técnicas Avançadas de Adobe Premiere Pro & After Effects</li>
+                        <li style="margin-bottom: 8px;">Motion Design em Interfaces (UI) e Redes Sociais</li>
+                    </ul>
+                </div>
+                <div class="edu-card" style="margin-bottom: 0;">
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px; font-size: 1.15rem;">Marketing & Negócios</h3>
+                    <ul style="padding-left: 20px; color: var(--text-secundario);">
+                        <li style="margin-bottom: 8px;">Marketing de Conteúdo & Software (HubSpot Academy)</li>
+                        <li style="margin-bottom: 8px;">Marketing Digital Online e E-commerce (Google / EOI Espanha)</li>
+                        <li style="margin-bottom: 8px;">Gestão de Tempo e Produtividade (Crehana INC.)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Jonathan M. Mendoza. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

@@ -3,215 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonathan M. Mendoza | Portfólio & CV</title>
+    <title>Jonathan M. Mendoza | Designer Gráfico & Editor de Vídeo</title>
+    
+    <!-- Importação da Fonte Inter (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* Princípios do Material Design & Paleta Dark */
+        /* Variáveis de Design - Paleta Premium Premium Dark e Smooth Transitions */
         :root {
-            --bg-principal: #0f172a;
-            --bg-card: #1e293b;
-            --text-principal: #f8fafc;
-            --text-secundario: #94a3b8;
-            --accent-gradient: linear-gradient(135deg, #38bdf8, #0284c7);
-            --accent-color: #38bdf8;
-            --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            --sombra-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-            --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-deep: #0b0f19;
+            --bg-card: rgba(22, 30, 49, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.9);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-cyan: #38bdf8;
+            --accent-teal: #0d9488;
+            --gradient-primary: linear-gradient(135deg, #38bdf8, #0ea5e9, #0d9488);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-glow: rgba(56, 189, 248, 0.25);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: 0.2s var(--ease-smooth);
+            --transition-normal: 0.4s var(--ease-smooth);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-principal);
-            color: var(--text-principal);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Container Global */
+        /* --- ANIMAÇÃO DE FUNDO SUTIL E ELEGANTE --- */
+        .bg-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blur-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+        }
+
+        .blob-1 {
+            top: -10%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: var(--accent-cyan);
+            animation: float-slow 25s infinite alternate ease-in-out;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            left: -10%;
+            width: 700px;
+            height: 700px;
+            background: var(--accent-teal);
+            animation: float-slow 35s infinite alternate-reverse ease-in-out;
+        }
+
+        .blob-3 {
+            top: 40%;
+            right: 25%;
+            width: 400px;
+            height: 400px;
+            background: #6366f1;
+            animation: float-slow 20s infinite alternate ease-in-out;
+            opacity: 0.08;
+        }
+
+        @keyframes float-slow {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(60px, 80px) scale(1.1) rotate(180deg); }
+            100% { transform: translate(-40px, 30px) scale(0.9) rotate(360deg); }
+        }
+
+        /* --- LAYOUT & CONTAINERS --- */
         .container {
-            max-width: 1100px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Navbar Sticky */
+        /* Navbar Moderna */
         nav {
             position: sticky;
             top: 0;
-            background-color: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
+            background-color: rgba(11, 15, 25, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 100;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: var(--transition-fast);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 80px;
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: var(--accent-gradient);
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-secundario);
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: var(--transicao);
+            transition: var(--transition-fast);
+            position: relative;
+            padding: 6px 0;
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
+            color: var(--text-main);
         }
 
-        /* Hero Section com Gradiente */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Header / Hero */
         header {
-            padding: 80px 0 60px 0;
-            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.15), transparent 40%);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.05);
+            padding: 100px 0 70px 0;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
         header h1 {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.2;
-            margin-bottom: 10px;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .tagline {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 500;
-            color: var(--accent-color);
-            margin-bottom: 25px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
         }
 
-        /* Grid de Contatos (Cards) */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
         }
 
         .contact-card {
-            background-color: var(--bg-card);
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: var(--sombra-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 0.9rem;
-            color: var(--text-secundario);
-            transition: var(--transicao);
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-normal);
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
         .contact-card strong {
-            color: var(--text-principal);
+            color: var(--text-main);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 6px;
         }
 
-        .contact-card a {
-            color: var(--accent-color);
+        .contact-card p, .contact-card a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
             text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         .cta-button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 28px;
-            background: var(--accent-gradient);
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 32px;
+            background: var(--gradient-primary);
             color: #fff;
             font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-            transition: var(--transicao);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
+            transition: var(--transition-normal);
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(2, 132, 199, 0.45);
         }
 
-        /* Seções Gerais */
+        /* Seções de Conteúdo */
         section {
             padding: 60px 0;
         }
 
         h2 {
-            font-size: 1.75rem;
+            font-size: 1.8rem;
             font-weight: 700;
+            letter-spacing: -0.5px;
             margin-bottom: 35px;
-            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--gradient-primary);
+            border-radius: 4px;
             display: inline-block;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 40px;
-            height: 4px;
-            background: var(--accent-gradient);
-            border-radius: 2px;
-        }
-
-        .profile-box {
-            background-color: var(--bg-card);
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: var(--sombra-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+        .card-profile {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
             text-align: justify;
+            font-size: 1.05rem;
+            color: #cbd5e1;
         }
 
-        /* Timeline de Experiência */
+        /* Timeline de Experiências Estilizada */
         .timeline {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 24px;
         }
 
         .timeline-item {
-            background-color: var(--bg-card);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: var(--sombra-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: var(--transicao);
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-normal);
         }
 
         .timeline-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--sombra-hover);
-            border-color: rgba(56, 189, 248, 0.2);
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-lg);
         }
 
         .time-header {
@@ -219,79 +355,114 @@
             justify-content: space-between;
             align-items: flex-start;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 5px;
+            gap: 12px;
+            margin-bottom: 6px;
         }
 
         .job-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--text-principal);
+            color: var(--text-main);
+            letter-spacing: -0.3px;
         }
 
         .job-date {
-            font-size: 0.9rem;
-            font-weight: 600;
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color);
-            padding: 4px 12px;
-            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            padding: 6px 14px;
+            border-radius: 99px;
+            border: 1px solid rgba(56, 189, 248, 0.1);
         }
 
         .company-name {
-            font-size: 1rem;
-            color: #0f766e;
+            font-size: 0.95rem;
+            color: #14b8a6;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
 
         .job-list {
             padding-left: 20px;
-            color: var(--text-secundario);
+            color: var(--text-muted);
         }
 
         .job-list li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-align: justify;
+            font-size: 0.95rem;
         }
 
-        /* Layout de Duas Colunas (Educação & Competências) */
+        /* Grid de Duas Colunas (Educação & Skills) */
         .grid-two-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
-        .edu-card {
-            background-color: var(--bg-card);
-            padding: 25px;
-            border-radius: 12px;
+        .info-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid var(--border-subtle);
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition-normal);
         }
 
-        .edu-card h4 {
-            font-size: 1.1rem;
+        .info-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-2px);
+        }
+
+        .info-card h4 {
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            color: var(--text-main);
         }
 
-        .edu-meta {
+        .info-meta {
             font-size: 0.9rem;
-            color: var(--text-secundario);
-            margin-bottom: 5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
         }
 
-        /* Badges de Habilidades e Idiomas */
-        .skills-container {
-            margin-bottom: 25px;
-        }
-
-        .skills-container h4 {
-            font-size: 1rem;
-            margin-bottom: 12px;
-            color: var(--text-principal);
+        .info-meta-highlight {
+            color: var(--accent-cyan);
             font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Containers de Badges Autênticas */
+        .skills-section-wrapper {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .skills-group-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .skills-box {
+            margin-bottom: 28px;
+        }
+
+        .skills-box:last-child {
+            margin-bottom: 0;
         }
 
         .badge-group {
@@ -301,48 +472,123 @@
         }
 
         .badge {
-            background-color: #334155;
-            color: var(--text-principal);
-            padding: 6px 14px;
-            border-radius: 8px;
+            background: rgba(30, 41, 59, 0.5);
+            color: #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-fast);
         }
 
-        .badge.language {
-            background-color: rgba(2, 132, 199, 0.1);
-            border: 1px solid rgba(2, 132, 199, 0.2);
-            color: var(--accent-color);
+        .badge:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-cyan);
+            color: #fff;
+        }
+
+        .badge.lang {
+            background: rgba(13, 148, 136, 0.08);
+            border-color: rgba(13, 148, 136, 0.2);
+            color: #2dd4bf;
+            font-weight: 600;
+        }
+
+        .badge.lang:hover {
+            background: rgba(13, 148, 136, 0.2);
+            border-color: #2dd4bf;
+            color: #fff;
+        }
+
+        /* Certificações Integradas */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .cert-card-premium {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-normal);
+        }
+
+        .cert-card-premium:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cert-card-premium h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #fff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 10px;
+        }
+
+        .cert-sublist {
+            list-style: none;
+        }
+
+        .cert-sublist li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .cert-sublist li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 0;
-            color: var(--text-secundario);
+            padding: 50px 0;
+            color: var(--text-muted);
             font-size: 0.9rem;
-            border-top: 1px solid rgba(148, 163, 184, 0.05);
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 40px;
         }
 
-        /* Responsividade */
+        /* Responsividade Avançada */
         @media (max-width: 768px) {
-            header h1 { font-size: 2.2rem; }
+            header h1 { font-size: 2.5rem; }
             .time-header { flex-direction: column; align-items: flex-start; }
-            .job-date { margin-top: 5px; }
+            .job-date { margin-top: 4px; }
+            .card-profile { padding: 25px; }
+            .nav-links { display: none; } /* Ocultado links em telas mobile por simplicidade */
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV BAR -->
+    <!-- CONTAINER DE ANIMAÇÃO DE FUNDO -->
+    <div class="bg-animation-container">
+        <div class="blur-blob blob-1"></div>
+        <div class="blur-blob blob-2"></div>
+        <div class="blur-blob blob-3"></div>
+    </div>
+
+    <!-- NAVBAR -->
     <nav>
         <div class="container nav-container">
             <div class="logo">JONATHAN M. MENDOZA</div>
             <ul class="nav-links">
                 <li><a href="#perfil">Perfil</a></li>
                 <li><a href="#experiencia">Experiência</a></li>
-                <li><a href="#competencias">Competências</a></li>
+                <li><a href="#educacao">Educação</a></li>
                 <li><a href="#certificacoes">Certificações</a></li>
             </ul>
         </div>
@@ -350,37 +596,42 @@
 
     <!-- HERO HEADER -->
     <header>
-        <div class="container hero-grid">
-            <div>
-                <!-- -->
-                <h1>JONATHAN M. MENDOZA</h1>
+        <div class="container">
+            <!-- -->
+            <div class="hero-badge">
+                <div class="pulse-dot"></div>
+                Disponível para Trabalho Remoto / Imediato
+            </div>
+            <!--[cite: 1] -->
+            <h1>JONATHAN M. MENDOZA</h1>
+            <!--[cite: 1] -->
+            <div class="tagline">Designer Gráfico & Editor de Vídeo / Produtor Multimídia</div>
+            
+            <div class="cta-group">
                 <!--[cite: 1] -->
-                <div class="tagline">Designer Gráfico & Editor de Vídeo / Produtor Multimídia</div>
-                
-                <!--[cite: 1] -->
-                <a href="https://www.youtube.com/watch?v=KASo_OzougY" target="_blank" class="cta-button">Ver Meu Portfólio / Showreel</a>
+                <a href="https://www.behance.net" target="_blank" class="cta-button">Acessar Meu Portfólio / Showreel</a>
+            </div>
 
-                <div class="contact-grid">
-                    <!--[cite: 1] -->
-                    <div class="contact-card">
-                        <strong>Telefone</strong>
-                        <a href="tel:+5532988028321">+55 (32) 988028321</a>
-                    </div>
-                    <!--[cite: 1] -->
-                    <div class="contact-card">
-                        <strong>E-mail</strong>
-                        <a href="mailto:Jonathanjm.diseno@gmail.com">Jonathanjm.diseno@gmail.com</a>
-                    </div>
-                    <!--[cite: 1] -->
-                    <div class="contact-card">
-                        <strong>Localização</strong>
-                        Juiz de Fora, MG - Brasil
-                    </div>
-                    <!--[cite: 1] -->
-                    <div class="contact-card">
-                        <strong>Status</strong>
-                        Residência e Trabalho Válidos
-                    </div>
+            <div class="contact-grid">
+                <!--[cite: 1] -->
+                <div class="contact-card">
+                    <strong>Telefone</strong>
+                    <p><a href="tel:+5532988028321">+55 (32) 988028321</a></p>
+                </div>
+                <!--[cite: 1] -->
+                <div class="contact-card">
+                    <strong>E-mail</strong>
+                    <p><a href="mailto:Jonathanjm.diseno@gmail.com">Jonathanjm.diseno@gmail.com</a></p>
+                </div>
+                <!--[cite: 1] -->
+                <div class="contact-card">
+                    <strong>Localização</strong>
+                    <p>Juiz de Fora, MG - Brasil</p>
+                </div>
+                <!--[cite: 1] -->
+                <div class="contact-card">
+                    <strong>Status de Trabalho</strong>
+                    <p>Residência e Permissão Válidas</p>
                 </div>
             </div>
         </div>
@@ -392,7 +643,7 @@
         <!--[cite: 1] -->
         <section id="perfil">
             <h2>Perfil Profissional</h2>
-            <div class="profile-box">
+            <div class="card-profile">
                 Designer Gráfico e Editor de Vídeo com mais de 7 anos de experiência internacional, especializado em <em>motion graphics</em>, pós-produção audiovisual e criação de conteúdo estratégico para plataformas digitais e redes sociais. Com um perfil híbrido que combina comunicação visual de alto impacto com uma sólida base pedagógica, meu foco está em potencializar a identidade visual de marcas, otimizar a experiência de aprendizagem digital e elevar os níveis de conversão e engajamento em campanhas multimídia. Disponibilidade imediata, com total flexibilidade para fluxos de trabalho híbridos ou remotos.
             </div>
         </section>
@@ -403,7 +654,7 @@
             <h2>Experiência Profissional</h2>
             <div class="timeline">
                 
-                <!-- Job 1 -->
+                <!-- Empresa 1 -->
                 <div class="timeline-item">
                     <div class="time-header">
                         <div class="job-title">Editor de Vídeo e Produtor Multimídia</div>
@@ -417,7 +668,7 @@
                     </ul>
                 </div>
 
-                <!-- Job 2 -->
+                <!-- Empresa 2 -->
                 <div class="timeline-item">
                     <div class="time-header">
                         <div class="job-title">Designer Gráfico & Editor de Vídeo (Freelancer)</div>
@@ -430,7 +681,7 @@
                     </ul>
                 </div>
 
-                <!-- Job 3 -->
+                <!-- Empresa 3 -->
                 <div class="timeline-item">
                     <div class="time-header">
                         <div class="job-title">Designer Gráfico & Motion Graphics</div>
@@ -438,11 +689,11 @@
                     </div>
                     <div class="company-name">Creative Park – Paraguai</div>
                     <ul class="job-list">
-                        <li>Criação de ativos visuais dinâmicos e animações complexas (<em>motion graphics</em>) para campaigns publicitárias em redes sociais, aumentando a retenção de público das marcas clientes.</li>
+                        <li>Criação de ativos visuais dinâmicos e animações complexas (<em>motion graphics</em>) para campanhas publicitárias em redes sociais, aumentando a retenção de público das marcas clientes.</li>
                     </ul>
                 </div>
 
-                <!-- Job 4 -->
+                <!-- Empresa 4 -->
                 <div class="timeline-item">
                     <div class="time-header">
                         <div class="job-title">Designer Gráfico</div>
@@ -455,7 +706,7 @@
                     </ul>
                 </div>
 
-                <!-- Job 5 -->
+                <!-- Empresa 5 -->
                 <div class="timeline-item">
                     <div class="time-header">
                         <div class="job-title">Editor de Vídeo & Designer Gráfico</div>
@@ -471,65 +722,72 @@
             </div>
         </section>
 
-        <!-- EDUCAÇÃO E COMPETÊNCIAS -->
+        <!-- LAYOUT DUAS COLUNAS: EDUCAÇÃO E SKILLS -->
         <!--[cite: 1] -->
-        <section id="competencias" class="grid-two-col">
+        <section id="educacao" class="grid-two-col">
             
-            <!-- Coluna 1: Educação & Idiomas -->
+            <!-- Coluna Educação -->
             <div>
-                <h2>Educação</h2>
-                <div class="edu-card">
+                <h2>Educação & Idiomas</h2>
+                <div class="info-card">
                     <h4>Licenciatura em Educação</h4>
-                    <div class="edu-meta">Especialidade em Francês</div>
-                    <div class="edu-meta" style="color: var(--accent-color);">Univ. Pedagógica Experimental Libertador | 2014</div>
+                    <div class="info-meta">Especialidade em Francês</div>
+                    <div class="info-meta-highlight">Univ. Pedagógica Experimental Libertador | 2014</div>
                 </div>
-                <div class="edu-card">
+                <div class="info-card">
                     <h4>Especialização em Produção Audiovisual</h4>
-                    <div class="edu-meta">TV Caricuao (Venezuela) | 2017</div>
+                    <div class="info-meta">TV Caricuao (Venezuela)</div>
+                    <div class="info-meta-highlight">Concluído em 2017</div>
                 </div>
 
-                <h2>Idiomas</h2>
-                <div class="badge-group" style="margin-top: 15px;">
-                    <div class="badge language">Espanhol: Nativo</div>
-                    <div class="badge language">Francês: Avançado / Fluente</div>
-                    <div class="badge language">Português: Avançado / Fluente</div>
-                    <div class="badge language">Inglês: Intermediário</div>
+                <div class="skills-section-wrapper" style="margin-top: 25px;">
+                    <div class="skills-group-title">Fluência em Idiomas</div>
+                    <div class="badge-group">
+                        <div class="badge lang">Espanhol: Nativo</div>
+                        <div class="badge lang">Português: Avançado / Fluente</div>
+                        <div class="badge lang">Francês: Avançado / Fluente</div>
+                        <div class="badge lang">Inglês: Intermediário</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Coluna 2: Habilidades -->
+            <!-- Coluna Habilidades Técnicas -->
             <div>
-                <h2>Habilidades & Ferramentas</h2>
-                <div style="background-color: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03);">
-                    <div class="skills-container">
-                        <h4>Softwares Criativos</h4>
+                <h2>Habilidades & Ecossistema</h2>
+                <div class="skills-section-wrapper">
+                    
+                    <div class="skills-box">
+                        <div class="skills-group-title">Softwares Criativos</div>
                         <div class="badge-group">
                             <div class="badge">Adobe Premiere Pro</div>
-                            <div class="badge">After Effects</div>
-                            <div class="badge">Photoshop</div>
-                            <div class="badge">Illustrator</div>
+                            <div class="badge">Adobe After Effects</div>
+                            <div class="badge">Adobe Photoshop</div>
+                            <div class="badge">Adobe Illustrator</div>
                             <div class="badge">DaVinci Resolve</div>
                             <div class="badge">Affinity Designer</div>
                             <div class="badge">Affinity Photo</div>
                         </div>
                     </div>
-                    <div class="skills-container">
-                        <h4>Gestão & Estratégia</h4>
+
+                    <div class="skills-box">
+                        <div class="skills-group-title">Gestão & Estratégia</div>
                         <div class="badge-group">
-                            <div class="badge">Projetos Audiovisuais</div>
+                            <div class="badge">Direção Audiovisual</div>
                             <div class="badge">Identidade de Marca (Branding)</div>
                             <div class="badge">Marketing de Conteúdo</div>
-                            <div class="badge">Comunicação & Oratória</div>
+                            <div class="badge">Oratória & Pitching</div>
                         </div>
                     </div>
-                    <div class="skills-container">
-                        <h4>Diferencial Pedagógico</h4>
+
+                    <div class="skills-box">
+                        <div class="skills-group-title">Core Pedagógico</div>
                         <div class="badge-group">
                             <div class="badge">Design Instrucional</div>
-                            <div class="badge">Didática Aplicada</div>
-                            <div class="badge">E-learning</div>
+                            <div class="badge">Metodologias Ativas</div>
+                            <div class="badge">E-learning / EdTech</div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -537,24 +795,29 @@
         <!-- CERTIFICAÇÕES -->
         <!--[cite: 1] -->
         <section id="certificacoes">
-            <h2>Desenvolvimento Profissional & Certificações</h2>
-            <div class="grid-two-col">
-                <div class="edu-card" style="margin-bottom: 0;">
-                    <h3 style="color: var(--accent-color); margin-bottom: 15px; font-size: 1.15rem;">Técnicas & Audiovisuais</h3>
-                    <ul style="padding-left: 20px; color: var(--text-secundario);">
-                        <li style="margin-bottom: 8px;">Pós-Produção Audiovisual e Color Grading (Crehana INC.)</li>
-                        <li style="margin-bottom: 8px;">Técnicas Avançadas de Adobe Premiere Pro & After Effects</li>
-                        <li style="margin-bottom: 8px;">Motion Design em Interfaces (UI) e Redes Sociais</li>
+            <h2>Desenvolvimento & Certificações</h2>
+            <div class="cert-grid">
+                
+                <div class="cert-card-premium">
+                    <h3>Especialização Técnica (Crehana)</h3>
+                    <ul class="cert-sublist">
+                        <li>Pós-Produção Audiovisual Avançada</li>
+                        <li>Color Grading Completo em DaVinci Resolve</li>
+                        <li>Técnicas de Motion Design em Interfaces (UI)</li>
+                        <li>Animações Especializadas para Redes Sociais</li>
                     </ul>
                 </div>
-                <div class="edu-card" style="margin-bottom: 0;">
-                    <h3 style="color: var(--accent-color); margin-bottom: 15px; font-size: 1.15rem;">Marketing & Negócios</h3>
-                    <ul style="padding-left: 20px; color: var(--text-secundario);">
-                        <li style="margin-bottom: 8px;">Marketing de Conteúdo & Software (HubSpot Academy)</li>
-                        <li style="margin-bottom: 8px;">Marketing Digital Online e E-commerce (Google / EOI Espanha)</li>
-                        <li style="margin-bottom: 8px;">Gestão de Tempo e Produtividade (Crehana INC.)</li>
+
+                <div class="cert-card-premium">
+                    <h3>Marketing Digital & Negócios</h3>
+                    <ul class="cert-sublist">
+                        <li>Content & Software Marketing (HubSpot Academy)</li>
+                        <li>E-commerce & Marketing Online (Google / EOI Espanha)</li>
+                        <li>Transformação Digital Corporativa (Google)</li>
+                        <li>Gestão Avançada de Tempo e Produtividade</li>
                     </ul>
                 </div>
+
             </div>
         </section>
 
@@ -562,7 +825,9 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Jonathan M. Mendoza. Todos os direitos reservados.</p>
+        <div class="container">
+            <p>&copy; 2026 Jonathan M. Mendoza. Projetado com foco em alta performance visual.</p>
+        </div>
     </footer>
 
 </body>
